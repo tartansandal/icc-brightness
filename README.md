@@ -80,3 +80,25 @@ rm -f ~/.local/bin/icc-brightness-gen
 rm -f ~/.local/bin/icc-brightness
 rm -f ~/.config/autostart/icc-brightness.desktop
 ```
+## Multiple Displays
+
+If you like to use an external monitor in addition to your laptop display, you may find your brightness keys changing the brightness of your monitor instead of your laptop.
+A workaround is to explicitly set the device that you want `icc-brightness` to
+target.
+
+First get a list of device models that `icc_brightness` can see:
+
+```
+$ ./icc-brightness list
+XPS 15 7590
+LG Ultra HD
+```
+
+Next modify the commands you use to specify the device model you want to operate
+on:
+
+```
+$ ./icc-brightness --target XPS apply
+```
+
+Note, you only need to specify a unique prefix for the `--target` argument.
