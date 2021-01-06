@@ -5,6 +5,6 @@
 Type=Application
 Name=ICC Brightness
 Comment=Control OLED display brightness by applying ICC color profiles.
-Exec=icc-brightness watch
+Exec=icc-brightness --loglevel DEBUG --logfile /home/kal/icc-brightness.log watch
 Terminal=false
 X-GNOME-Autostart-enabled=true
