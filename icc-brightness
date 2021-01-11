@@ -103,11 +103,26 @@ def get_device_id():
     return get_object_path(out)
 
 
+def rounded(brightness, max_brightness, factor=0.05):
+    """
+    return BRIGHTNESS rounded to FACTOR increments of MAX_BRIGHTNESS
+
+    This avoids strange brightness settings like 0.61, due to float rounding anomalies.
+    """
+    return int(
+        (
+            ((int((brightness / max_brightness) * 100)) //
+             (100 * factor)) * 0.05
+        ) * max_brightness
+    )
+
+
 last_icc_filename = None
 
 
 def icc_brightness(brightness, max_brightness):
 
+    brightness = rounded(brightness, max_brightness)
     icc_filename = '%sbrightness_%d_%d.icc' % (
         target_slug, brightness, max_brightness
     )
