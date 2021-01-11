@@ -188,9 +188,8 @@ def slugify(value):
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO, format='%(levelname)s: %(message)s'
-    )
+    log_format = '%(asctime)s - %(levelname)s: %(message)s'
+    logging.basicConfig(level=logging.INFO, format=log_format)
     logger = logging.getLogger()
 
     parser = argparse.ArgumentParser(
@@ -230,7 +229,7 @@ def main():
     if args.logfile is not None:
         logfile = args.logfile
         fh = logging.FileHandler(logfile, mode='w')
-        fh.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
+        fh.setFormatter(logging.Formatter(log_format))
         logger.addHandler(fh)
         logger.info('Logging to file: %s' % logfile)
 
