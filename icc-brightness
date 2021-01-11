@@ -159,7 +159,7 @@ def icc_brightness_apply():
     icc_brightness(brightness, max_brightness)
 
 
-def handler(signum, frame):
+def handler():
     if LOCK.acquire(blocking=False):
         try:
             icc_brightness_apply()
@@ -194,8 +194,7 @@ def main():
     logger = logging.getLogger()
 
     parser = argparse.ArgumentParser(
-        description=
-        'Control OLED display brightness by applying ICC color profiles'
+        description='Control OLED display brightness by applying ICC color profiles'
     )
 
     subparsers = parser.add_subparsers(dest='action')
