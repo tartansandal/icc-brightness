@@ -244,7 +244,7 @@ def main():
 
     if args.logfile is not None:
         logfile = args.logfile
-        fh = logging.FileHandler(logfile, mode='w')
+        fh = logging.FileHandler(logfile, mode='a')
         fh.setFormatter(logging.Formatter(log_format))
         logger.addHandler(fh)
         logger.info('Logging to file: %s' % logfile)
