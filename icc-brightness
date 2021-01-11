@@ -174,7 +174,8 @@ def icc_brightness_apply():
     icc_brightness(brightness, max_brightness)
 
 
-def handler():
+def handler(signum, frame):
+    logging.debug("Running handler for signum %d and frame %s" % (signum, frame))
     if LOCK.acquire(blocking=False):
         try:
             icc_brightness_apply()
