@@ -124,10 +124,11 @@ def icc_brightness(brightness, max_brightness):
 
     brightness = rounded(brightness, max_brightness)
     icc_filename = '%sbrightness_%d_%d.icc' % (
-        target_slug, brightness, max_brightness
+        target.slug, brightness, max_brightness
     )
     logging.debug('Apply profile %s', icc_filename)
     object_path = find_profile(icc_filename)
+    device_id = get_device_id()
     if object_path is None:
         icc_filepath = os.path.join(TEMP_FOLDER, icc_filename)
         subprocess.run(
@@ -144,7 +145,7 @@ def icc_brightness(brightness, max_brightness):
             subprocess.run(
                 [
                     'colormgr', 'device-add-profile',
-                    get_device_id(), object_path
+                    device_id, object_path
                 ],
                 check=True
             )
@@ -154,7 +155,7 @@ def icc_brightness(brightness, max_brightness):
     subprocess.run(
         [
             'colormgr', 'device-make-profile-default',
-            get_device_id(), object_path
+            device_id, object_path
         ],
         check=True
     )
