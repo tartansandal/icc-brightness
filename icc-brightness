@@ -45,7 +45,7 @@ def clean():
             continue
         if line.startswith('Filename:'):
             filename = line.split(':')[1].lstrip()
-            if filename.find('/brightness_') < 0:
+            if filename.find(f'icc/{target.slug}brightness_') < 0:
                 continue
             logging.info('Removing: %s', filename)
             subprocess.run(
