@@ -77,11 +77,11 @@ def get_object_path(out):
     for line in out.decode('utf8').split('\n'):
         if line.startswith('Object Path:'):
             object_path = line.split(':')[1].lstrip()
-            if target_device is None:
+            if target.device is None:
                 break
-        elif target_device is not None and line.startswith('Model:'):
+        elif target.device is not None and line.startswith('Model:'):
             model_name = line.split(':')[1].lstrip()
-            if model_name.startswith(target_device):
+            if model_name.startswith(target.device):
                 break
     return object_path
 
